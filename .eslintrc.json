@@ -1,0 +1,13 @@
+{
+	"env": {
+		"browser": true,
+		"es2020": true
+	},
+	"extends": ["plugin:react/recommended", "prettier"],
+	"parserOptions": {
+		"ecmaVersion": 2018
+	},
+	"rules": {
+		"indentation": "tab"
+	}
+}

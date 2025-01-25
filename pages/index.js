@@ -31,7 +31,10 @@ export default function Home() {
 					<h1>Estamos mejorando la web para facilitar la navegación y la compra</h1>
 					<h3>Para pedidos lujanbuyerr@proton.me</h3>
 					<h2>
-						La calculadora para RE esta habilitada <a href="/calculadora">aquí</a>
+						La calculadora para RE esta habilitada{" "}
+						<a href="/calculadora" target="_blank">
+							aquí
+						</a>
 					</h2>
 				</div>
 

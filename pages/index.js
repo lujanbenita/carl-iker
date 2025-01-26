@@ -16,6 +16,7 @@ export default function Home() {
 			<main>
 				<div className="container-brand">
 					<img src="/brand.png" alt="logo" />
+					<p>Contacto: compras@lujanstore.es</p>
 				</div>
 				<div className="container--login">
 					<div className="login-form">
@@ -29,7 +30,7 @@ export default function Home() {
 				</div>
 				<div className="container--text">
 					<h1>Estamos mejorando la web para facilitar la navegación y la compra</h1>
-					<h3>Para pedidos lujanbuyerr@proton.me</h3>
+					<h3>Para pedidos lujanbuyer@proton.me o compras@lujanstore.es</h3>
 					<h2>
 						La calculadora para RE esta habilitada{" "}
 						<a href="/calculadora" target="_blank">

@@ -160,11 +160,22 @@ h5 {
 }
 
 .container-brand {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	padding: 20px;
 	background-color: #000000;
 
+	@media (width <= 585px) {
+		display: block;
+	}
+
 	img {
 		width: 200px;
+	}
+
+	p {
+		color: white;
 	}
 }
 

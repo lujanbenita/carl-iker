@@ -29,7 +29,10 @@ export default function Home() {
 					</div>
 				</div>
 				<div className="container--text">
-					<h1>Estamos mejorando la web para facilitar la navegación y la compra</h1>
+					<h1>
+						Estamos actualizando nuestra web para ofrecerte una mejor experiencia de navegación y compra. Muy pronto
+						volveremos con mejoras y novedades.
+					</h1>
 					<h3>Para pedidos lujanbuyer@proton.me o compras@lujanstore.es</h3>
 					<h2>
 						La calculadora para RE esta habilitada{" "}

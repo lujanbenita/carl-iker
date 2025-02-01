@@ -5,7 +5,7 @@ export default function Home() {
 		<>
 			<Head>
 				<title>Lujanstore </title>
-				<link rel="icon" href="/favicon.svg" />
+				<link rel="icon" href="/favicon.png" />
 				<meta name="description" content="landing de Lujanstore para hacer pedidos"></meta>
 				<style>
 					@import

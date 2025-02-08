@@ -1,12 +1,23 @@
 import { useState, useEffect } from "react";
 
+const copyToClipboard = value => {
+	navigator.clipboard
+		.writeText(value.toString())
+		.then(() => {
+			console.log("Copied to clipboard:", value);
+		})
+		.catch(err => {
+			console.error("Failed to copy:", err);
+		});
+};
+
 const Calculadora = () => {
-	const [amount, setAmount] = useState();
+	const [amount, setAmount] = useState(null);
 	const [result, setResult] = useState(null);
 
 	useEffect(() => {
 		const amountValue = parseFloat(amount);
-		if (!isNaN(amountValue)) {
+		if (!isNaN(amountValue) && amountValue !== 0) {
 			// Calcular para precio SIN IVA
 			const IVA = amountValue * 0.21;
 			const recargoEquivalenciaSinIVA = amountValue * 0.052;
@@ -24,25 +35,28 @@ const Calculadora = () => {
 				recargoEquivalenciaConIVA,
 				totalConIVA,
 			});
+
+			copyToClipboard(totalSinIVA.toFixed(2));
 		} else {
 			setResult(null);
 		}
-	}, [amount]); // Se ejecuta cada vez que amount cambia
+	}, [amount]);
 
 	const incrementar = () => {
-		setAmount(prev => parseFloat(prev) + 1);
+		setAmount(prev => (prev !== null ? parseFloat(prev) + 1 : 1));
 	};
 
 	const decrementar = () => {
 		setAmount(prev => {
-			const newValue = parseFloat(prev) - 1;
-			return newValue > 0 ? newValue : 0;
+			const newValue = prev !== null ? parseFloat(prev) - 1 : 0;
+			return newValue > 0 ? newValue : null;
 		});
 	};
 
 	const handleChange = e => {
 		const value = e.target.value;
-		setAmount(value === "" ? 0 : parseFloat(value));
+		setAmount(value === "" ? null : parseFloat(value));
+		copyToClipboard(value === "" ? 0 : parseFloat(value));
 	};
 
 	return (
@@ -69,7 +83,14 @@ const Calculadora = () => {
 						<button className="quantity-btn" onClick={decrementar}>
 							-
 						</button>
-						<input type="number" className="quantity-input" min="0" step="1" value={amount} onChange={handleChange} />
+						<input
+							type="number"
+							className="quantity-input"
+							min="0"
+							step="1"
+							value={amount || ""}
+							onChange={handleChange}
+						/>
 						<button className="quantity-btn" onClick={incrementar}>
 							+
 						</button>

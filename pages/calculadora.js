@@ -4,7 +4,7 @@ const copyToClipboard = value => {
 	navigator.clipboard
 		.writeText(value.toString())
 		.then(() => {
-			console.log("Copied to clipboard:", value);
+			//console.log("Copied to clipboard:", value);
 		})
 		.catch(err => {
 			console.error("Failed to copy:", err);

@@ -245,11 +245,22 @@ button {
 
 	.result {
 		display: flex;
+		gap: 0;
 		align-items: center;
+
+		@media (width <= 585px) {
+			gap: 18px;
+		}
 	}
 
 	.result-without-iva.result {
 		flex-direction: row-reverse;
+		gap: 0;
+
+		@media (width <= 585px) {
+			flex-direction: row;
+			gap: 18px;
+		}
 	}
 
 	h3 {
@@ -261,6 +272,13 @@ button {
 		display: flex;
 		flex-direction: column;
 		padding: 0 10px;
+	}
+
+	@media (width <= 585px) {
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		min-width: 100%;
 	}
 }
 
@@ -316,6 +334,10 @@ button {
 	position: relative;
 	top: 50px;
 	font-weight: 600;
+
+	@media (width <= 585px) {
+		display: none;
+	}
 }
 
 .total-price {

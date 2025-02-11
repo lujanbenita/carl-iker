@@ -234,6 +234,7 @@ button {
 }
 
 .results {
+	position: relative;
 	display: flex;
 	min-width: 600px;
 	padding: 20px;
@@ -344,4 +345,12 @@ button {
 	font-size: 18px;
 	font-weight: 600;
 	color: #6200ea;
+}
+
+.quantity-text {
+	position: absolute;
+	top: 10px;
+	right: 0;
+	left: 0;
+	font-weight: 600;
 }

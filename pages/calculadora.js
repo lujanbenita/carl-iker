@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+const CURRENCY_API = "c02e0163335e169f0e5d6f03fcde1dd8128b2288";
+
 const copyToClipboard = value => {
 	navigator.clipboard
 		.writeText(value.toString())
@@ -15,6 +17,10 @@ const Calculadora = () => {
 	const [amount, setAmount] = useState(null);
 	const [result, setResult] = useState(null);
 	const [quantity, setQuantity] = useState(1);
+
+	const [value, setValue] = useState(1);
+	const [currency, setCurrency] = useState(null);
+	console.log("currency", currency);
 
 	useEffect(() => {
 		const amountValue = parseFloat(amount);
@@ -42,6 +48,23 @@ const Calculadora = () => {
 			setResult(null);
 		}
 	}, [amount]);
+
+	useEffect(() => {
+		console.log("fetch");
+		// https://currency.getgeoapi.com/documentation/#currency-list-endpoint
+		fetch(`https://api.getgeoapi.com/v2/currency/convert?api_key=${CURRENCY_API}&amount=1`)
+			.then(response => response.json())
+			.then(data => {
+				const currency = Object.entries(data.rates)
+					.filter(([key]) => key === "PLN" || key === "SEK" || key === "GBP")
+					.map(([key, value]) => ({ currency: key, ...value }));
+
+				setCurrency(currency);
+			})
+			.catch(error => {
+				console.error("Error:", error);
+			});
+	}, []);
 
 	const incrementar = () => {
 		setAmount(prev => (prev !== null ? parseFloat(prev) + 1 : 1));
@@ -170,6 +193,64 @@ const Calculadora = () => {
 						</div>
 					)}
 				</div>
+			</div>
+			<div className="container-divisas">
+				<div className="divisas-title">cambio divisas de euro a</div>
+
+				<input
+					type="number"
+					className="quantity-input"
+					min="0"
+					step="1"
+					value={value || ""}
+					onChange={handleValue => setValue(handleValue.target.value)}
+				/>
+				<div className="divisas-prices">
+					<div>
+						Precio hoy{" "}
+						<span>
+							{currency && currency[1].currency}: {currency && currency[1].rate}
+						</span>
+					</div>
+					<div>
+						Precio hoy{" "}
+						<span>
+							{currency && currency[0].currency}: {currency && currency[0].rate}
+						</span>
+					</div>
+					<div>
+						Precio hoy{" "}
+						<span>
+							{currency && currency[2].currency}: {currency && currency[2].rate}
+						</span>
+					</div>
+				</div>
+
+				{currency && (
+					<div className="divisas-items">
+						<div>
+							<p>
+								{currency && currency[1].currency} : {currency && (currency[1].rate * value).toFixed(2)}
+							</p>
+
+							<span className="percentage"> 20% = {((currency[1].rate * value).toFixed(2) * 1.2).toFixed(2)} </span>
+						</div>
+						<div>
+							<p>
+								{currency && currency[0].currency}: {currency && (currency[0].rate * value).toFixed(2)}
+							</p>
+
+							<span className="percentage"> 20% = {((currency[0].rate * value).toFixed(2) * 1.2).toFixed(2)} </span>
+						</div>
+						<div>
+							<p>
+								{currency && currency[2].currency}: {currency && (currency[2].rate * value).toFixed(2)}
+							</p>
+
+							<span className="percentage"> 20% = {((currency[2].rate * value).toFixed(2) * 1.2).toFixed(2)} </span>
+						</div>
+					</div>
+				)}
 			</div>
 		</main>
 	);

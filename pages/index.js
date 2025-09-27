@@ -1,6 +1,9 @@
 import Head from "next/head";
+import { obtenerViernesActualizado } from "../utils/dateUtils";
 
 export default function Home() {
+	// Obtener el viernes con actualización automática cada 15 días
+	const viernesEnDosSemanasD = obtenerViernesActualizado("es");
 	return (
 		<>
 			<Head>
@@ -40,6 +43,15 @@ export default function Home() {
 							aquí
 						</a>
 					</h2>
+				</div>
+
+				<div className="container--text apertura">
+					<h2>Ya tenemos fecha de reapertura</h2>
+					<h1>
+						<b>{viernesEnDosSemanasD}</b>
+					</h1>
+
+					<h3>Gracias por vuestra paciencia</h3>
 				</div>
 
 				<footer className="container--footer">

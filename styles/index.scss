@@ -82,6 +82,7 @@ main {
 	justify-content: center;
 	height: 100vh;
 	background-image: url("/bg.jpg");
+	background-image: url("https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=1920&q=8");
 	background-position: center;
 	background-size: cover;
 }
@@ -135,10 +136,24 @@ main {
 	text-align: center;
 	background: #ffffff5e;
 	border-radius: 4px;
+	margin-bottom: 35px;
+	backdrop-filter: blur(9px);
 
 	h3 {
 		margin-top: 1rem;
 		margin-bottom: 1.2rem;
+	}
+}
+
+.apertura {
+	h1 {
+		margin: 10px 0 5px;
+		color: #175f17;
+	}
+	h2 {
+		color: #b82947;
+	}
+	h3 {
 	}
 }
 
